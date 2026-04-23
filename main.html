@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-brr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal</title>
+    <link rel="stylesheet" href="public/css/estilo.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Biblioteca</h1>
+    </header>
+    
+    <form method="GET" class="filtro">
+        <input type="text" name="filtro" id="filtro">
+    </form>
+
+    <main>
+        <section>
+            <h3>Agendamento de Serviços</h3>
+            <article class="form-container">
+                <form action="/enviar" method="post">
+                    <input type="text" id="nome" name="nome" placeholder="Nome:" required />
+                    <br /><br />
+
+                    <input type="email" id="email" name="email" placeholder="E-mail:" required />
+                    <br /><br />
+
+                    <select id="servico" name="servico">
+                        <option value="selecione">Selecione o Serviço</option>
+                        <option value="banho">Banho</option>
+                        <option value="tosa">Tosa</option>
+                        <option value="passeio">Passeio</option>
+                        <option value="terapia">Terapia Pet</option>
+                    </select>
+                    <br /><br />
+
+                    <textarea name="mensagem" id="mensagem" rows="4" placeholder="Mensagem:" required></textarea>
+                    <br /><br />
+
+                    <button type="submit">Enviar</button>
+                </form>
+            </article>
+        </section>
+
+        <section>
+            <h3>Fale com a gente... se quiser...</h3>
+            <p>
+                Você pode nos enviar uma mensagem sempre que precisar. Ficamos felizes
+                em ajudar — mesmo que seja só para conversar um pouquinho sobre
+                animaizinhos.
+            </p>
+        </section>
+
+        <section class="container">
+            <h3>Telefone dos Bichinhos</h3>
+            <div class="contatos">
+                <p>📞 (11) 3333-4444</p>
+                <p>📞 (11) 99888-1122</p>
+                <p>📞 (11) 97777-2233</p>
+                <p>Estamos disponíveis para falar... com calma e carinho.</p>
+            </div>
+        </section>
+
+        <section class="container">
+            <h3>E-mail encantado</h3>
+            <div class="contatos">
+                <p>📧 fluttershy@petshop.com</p>
+                <p>📧 ajuda@fluttershypetshop.com</p>
+                <p>📧 mimos@fluttershypetshop.com</p>
+                <p>Mande sua cartinha digital, e responderemos com todo o cuidado.</p>
+            </div>
+        </section>
+
+        <section class="container">
+            <h3>Nosso endereço</h3>
+            <div class="contatos">
+                <p>Rua dos Beija-Flores, 123 - Jardim Equestre, Ponyville</p>
+                <p>... ou algo bem parecido 🌸</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Todos os Direitos Reservados</p>
+    </footer>
+</body>
+
+</html>
