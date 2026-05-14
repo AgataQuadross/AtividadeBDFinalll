@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json");
-include("../db/conexao.php");
+include("../bd/conexao.php");
 
 $dados = json_decode(file_get_contents("php://input"), true);
 
