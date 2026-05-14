@@ -2,7 +2,7 @@
 // Define o tipo de aplicação
 header("Content-Type: application/json");
 // Inclui a conexão com o banco de dados
-include "../db/conexao.php";
+include "../bd/conexao.php";
 
 // Decodifica o json enviado pelo JavaScript
 $json = json_decode(file_get_contents("php://input"), true);
