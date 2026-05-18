@@ -66,6 +66,11 @@ CREATE TABLE emprestimo_livro (
     FOREIGN KEY (id_livro) REFERENCES livro(id)
 );
 
+-- Ceiando um usuario
+CREATE IF NOT EXISTS USER 'novo_usuario'@'localhost' IDENTIFIED BY '1234senha';
+GRANT CREATE, SELECT, UPDATE, DELETE PRIVILEGES ON database_name.* TO 'new_user'@'localhost';
+
+
 INSERT INTO categoria_leitor (nome) VALUES ('Aluno'), ('Professor'), ('Comunidade'), ('Funcionário');
 
 INSERT INTO categoria_livro (nome) VALUES ('Ficção Científica'), ('Romance'), ('História'), ('Tecnologia'), ('Suspense');
@@ -192,3 +197,73 @@ FROM emprestimo e
  JOIN livro l ON e.id_livro = l.id
 WHERE e.data_prevista_devolucao IS NULL
 ORDER BY lei.nome
+
+-- 1. Uma lista mostrando quais livros estão emprestados no momento e com quem estão.
+CREATE VIEW vw_livros_atualmente_emprestados AS
+SELECT 
+    l.titulo AS Livro,
+    le.nome_completo AS Leitor,
+    e.data_emprestimo AS Data_Emprestimo
+FROM emprestimo e
+JOIN leitor le ON e.id_leitor = le.id
+JOIN emprestimo_livro el ON e.id = el.id_emprestimo
+JOIN livro l ON el.id_livro = l.id
+WHERE e.data_devolucao IS NULL;
+
+
+-- 2. Uma lista vermelha mostrando apenas os leitores que estão com livros atrasados.
+CREATE VIEW vw_lista_vermelha_atrasos AS
+SELECT 
+    le.nome_completo AS Leitor,
+    le.telefone,
+    l.titulo AS Livro,
+    e.data_prevista_devolucao
+FROM emprestimo e
+JOIN leitor le ON e.id_leitor = le.id
+JOIN emprestimo_livro el ON e.id = el.id_emprestimo
+JOIN livro l ON el.id_livro = l.id
+WHERE e.data_devolucao IS NULL 
+  AND e.data_prevista_devolucao < CURDATE();
+
+
+-- 3. Uma lista mostrando quantos livros de cada categoria nós temos no acervo total.
+CREATE VIEW vw_total_livros_por_categoria AS
+SELECT 
+    c.nome AS Categoria,
+    COUNT(l.id) AS Quantidade_Total
+FROM categoria_livro c
+LEFT JOIN livro l ON c.id = l.id_categoria_livro
+GROUP BY c.nome;
+
+
+-- 4. Uma lista mostrando a quantidade total de livros cadastrados por autor.
+CREATE VIEW vw_total_livros_por_autor AS
+SELECT 
+    a.nome AS Autor,
+    COUNT(la.id_livro) AS Quantidade_Livros
+FROM autor a
+LEFT JOIN livro_autor la ON a.id = la.id_autor
+GROUP BY a.nome;
+
+
+-- 5. Uma lista mostrando os clientes e o endereço completo deles (em uma única coluna).
+CREATE VIEW vw_clientes_endereco_completo AS
+SELECT 
+    nome_completo AS Cliente,
+    CONCAT(rua, ', nº ', numero, ' - ', bairro, ', ', cidade, ' - CEP: ', cep) AS Endereco_Completo
+FROM leitor;
+
+
+-- 6. Uma lista mostrando quais livros estão emprestados no momento, separados por perfil de leitor.
+CREATE VIEW vw_emprestimos_por_perfil AS
+SELECT 
+    cl.nome AS Perfil_Leitor,
+    l.titulo AS Livro,
+    le.nome_completo AS Leitor
+FROM emprestimo e
+JOIN leitor le ON e.id_leitor = le.id
+JOIN categoria_leitor cl ON le.id_categoria_leitor = cl.id
+JOIN emprestimo_livro el ON e.id = el.id_emprestimo
+JOIN livro l ON el.id_livro = l.id
+WHERE e.data_devolucao IS NULL
+ORDER BY cl.nome;
