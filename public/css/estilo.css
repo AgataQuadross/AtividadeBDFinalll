@@ -69,7 +69,7 @@ header {
 
 header h1 {
     text-align: center;
-    color: var(--rosa-claro) ;
+    color: var(--rosa-claro);
     font-family: "Ballet", cursive;
     font-weight: 400;
     font-style: normal;
@@ -84,31 +84,38 @@ header img {
     display: flex;
 }
 
-nav {
-    display: flex;
-    font-size: 2rem;
-    justify-content: center;
-    line-height: 600px 0 0 0;
+button {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 17px;
+    padding: 5px 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: var(--borda-padrao);
+    color: var(--verde-jade-escuro);
+    background-color: var(--marrom_claro);
 }
 
-nav a {
-    background-color: var(--marrom-avermelhado2);
+button:hover {
+    transform: scale(1.1);
+    border-radius: 5px;
+    border: var(--borda-hover);
     color: var(--verde-jade-claro);
-    text-decoration: none;
-    padding: 15px 20px;
-    margin: 15px 20px;
-    text-align: center;
-    border-radius: 4px;
+    background-color: var(--marrom);
 }
 
-nav a:hover {
-    background-color: var(--creme-escuro);
-    color: var(--rosa-acinsentado-medio);
-    flex-wrap: wrap;
-    padding: 15px 20px;
-    margin: 15px 20px;
-    transition: background-color 0.3s;
-    border-radius: 4px;
+/* foco visível para acessibilidade */
+
+button:focus-visible {
+    outline: var(--borda-focus);
+    outline-offset: 4px;
+}
+
+/* centralização de botões */
+
+.botao {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
 }
 
 main {
@@ -226,15 +233,9 @@ textarea {
     border: 0;
 }
 
-.imagem {
-    height: 240px;
-    float: left;
-    text-align: center;
-    border-radius: 50%;
-    object-fit: cover;
-}
+/* configuração do filtro */
 
-.filtro:form {
+.filtro {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -265,6 +266,13 @@ textarea {
 
 .filtro:input:hover {
     border: var(--borda-focus);
+}
+
+/* animação suave para input e botão */
+
+input,
+button {
+    transition: all 0.2s ease-in-out;
 }
 
 @media (max-width: 768px) {
