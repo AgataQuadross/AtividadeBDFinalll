@@ -8,24 +8,24 @@ document.addEventListener("DOMContentLoaded", () => {
         cabeca.innerHTML = "";
         tabela.innerHTML = "";
 
-        if (valor = 1) {
+        if (valor == 1) {
             cabeca.innerHTML = "<tr><th>Título</th><th>Leitor</th><th>Data de Emprestimo</th></tr>";
 
         }
-        else if (valor = 2) {
-            cabeca.innerHTML = "<tr><th>Leitores Atrasados</th></tr>";
+        else if (valor == 2) {
+            cabeca.innerHTML = "<tr><th>Leitore Atrasado</th><th>Número do Leitor</th><th>Livro Atarasado</th><th>Data de Devolução</th></tr>";
         }
-        else if (valor = 3) {
+        else if (valor == 3) {
             cabeca.innerHTML = "<tr><th>Categorias</th><th>Total de Livros</th></tr>";
         }
-        else if (valor = 4) {
+        else if (valor == 4) {
             cabeca.innerHTML = "<tr><th>Autores</th><th>Total de Livros</th></tr>";
         }
-        else if (valor = 5) {
+        else if (valor == 5) {
             cabeca.innerHTML = "<tr><th>Leitor</th><th>Endereço Completo</th></tr>";
         }
-        else if (valor = 6) {
-            cabeca.innerHTML = "Não Funciona, Não quero resolver";
+        else if (valor == 6) {
+            cabeca.innerHTML = "<tr><th>Categoria</th><th>Título</th><th>Leitor</th></tr>";
         }
         else {
 
@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         resultado.forEach(linha => {
             const tr = document.createElement("tr");
-            console.log(linha);
 
             for (const campo in linha){
                 const td = document.createElement("td");

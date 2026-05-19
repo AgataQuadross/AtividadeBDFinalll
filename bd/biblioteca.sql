@@ -187,14 +187,16 @@ SELECT
     CONCAT(rua, ', ', numero, ' - ', bairro, ', ', cidade) AS endereco_completo
 FROM leitor;
 
--- -- Livros emprestados por perfil de leitor
--- CREATE VIEW vw_emprestimos_por_perfil AS
--- SELECT
---     lei.nome AS categoria_leitor,
---     l.titulo AS livro,
---     lei.nome AS leitor
--- FROM emprestimo e
---  JOIN leitor lei ON e.id_leitor = lei.id
---  JOIN livro l ON e.id_livro = l.id
--- WHERE e.data_prevista_devolucao IS NULL
--- ORDER BY lei.nome
+-- Livros emprestados por perfil de leitor
+CREATE VIEW vw_emprestimos_por_perfil AS
+SELECT
+    cl.nome AS categoria_leitor,
+    l.titulo AS livro,
+    lei.nome_completo AS leitor
+FROM emprestimo e
+JOIN leitor lei ON e.id_leitor = lei.id
+JOIN categoria_leitor cl ON lei.id_categoria_leitor = cl.id
+JOIN emprestimo_livro el ON e.id = el.id_emprestimo
+JOIN livro l ON el.id_livro = l.id
+WHERE e.data_devolucao IS NULL
+ORDER BY cl.nome;

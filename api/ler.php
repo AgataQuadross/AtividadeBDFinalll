@@ -15,23 +15,23 @@ if (isset($json["cod"])) {
     $cod = 0;
 }
 
-if ($cod = 1) {
+if ($cod === 1) {
     $sql = "SELECT * FROM vw_livros_emprestados";
 }
-else if ($cod = 2) {
+else if ($cod === 2) {
     $sql = "SELECT * FROM vw_lista_vermelha";
 }
-else if ($cod = 3) {
+else if ($cod === 3) {
     $sql = "SELECT * FROM vw_total_por_categoria";
 }
-else if ($cod = 4) {
+else if ($cod === 4) {
     $sql = "SELECT * FROM vw_total_por_autor";
 }
-else if ($cod = 5) {
+else if ($cod === 5) {
     $sql = "SELECT * FROM vw_clientes_endereco_completo";
 }
-else if ($cod = 6) {
-
+else if ($cod === 6) {
+    $sql = "SELECT * FROM vw_emprestimos_por_perfil";
 }
 else {
     $sql = "erro";
