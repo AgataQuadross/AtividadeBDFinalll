@@ -8,12 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
         cabeca.innerHTML = "";
         tabela.innerHTML = "";
 
-        if (valor == 1) {
+        if (valor == 0) {
+            return
+        } else if (valor == 1) {
             cabeca.innerHTML = "<tr><th>Título</th><th>Leitor</th><th>Data de Emprestimo</th></tr>";
-
         }
         else if (valor == 2) {
-            cabeca.innerHTML = "<tr><th>Leitore Atrasado</th><th>Número do Leitor</th><th>Livro Atarasado</th><th>Data de Devolução</th></tr>";
+            cabeca.innerHTML = "<tr><th>Leitor Atrasado</th><th>Número do Leitor</th><th>Livro Atarasado</th><th>Data de Devolução</th></tr>";
         }
         else if (valor == 3) {
             cabeca.innerHTML = "<tr><th>Categorias</th><th>Total de Livros</th></tr>";
@@ -26,9 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else if (valor == 6) {
             cabeca.innerHTML = "<tr><th>Categoria</th><th>Título</th><th>Leitor</th></tr>";
-        }
-        else {
-
         }
 
         const resposta = await fetch("./api/ler.php", {
