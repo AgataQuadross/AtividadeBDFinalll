@@ -8,37 +8,36 @@ include "../bd/conexao.php";
 $json = json_decode(file_get_contents("php://input"), true);
 
 // Pega o identificador do json
-$identificador = $conn->real_escape_string($json["opcao"]);
-if (isset($json["id"])) {
-    $id = (int) $json["id"];
+$codigo = $conn->real_escape_string($json["cod"]);
+if (isset($json["cod"])) {
+    $cod = (int) $json["cod"];
 } else {
-    $id = 0;
+    $cod = 0;
 }
 
-if (isset($json["filtro"])) {
-    $filtro = $conn->real_escape_string($json["filtro"]);
-} else {
-    $filtro = "";
+if ($cod = 1) {
+    $sql = "SELECT * FROM vw_livros_emprestados";
+}
+else if ($cod = 2) {
+
+}
+else if ($cod = 3) {
+
+}
+else if ($cod = 4) {
+
+}
+else if ($cod = 5) {
+
+}
+else if ($cod = 6) {
+
+}
+else {
+    $sql = "erro";
 }
 
-// Verifica qual o identificador e gera a query SQL de acordo
-if ($identificador === "clientes") {
-    $sql = "SELECT * FROM clientes ORDER BY ativo ASC, nome_cliente ASC";
-} elseif ($identificador === "alugueis-resumo") {
-    $sql = "SELECT clientes.id_cliente, nome_cliente, nome_livro, data_devolucao FROM alugados JOIN clientes ON alugados.id_cliente = clientes.id_cliente JOIN livros ON alugados.id_livro = livros.id_livro";
-} elseif ($identificador === "alugueis") {
-    $sql = "SELECT id_alugados, nome_cliente, nome_livro, data_aluguel, data_devolucao, situacao FROM alugados JOIN clientes ON alugados.id_cliente = clientes.id_cliente JOIN livros ON alugados.id_livro = livros.id_livro";
-} elseif ($identificador === "cliente-especifico") {
-    $sql = "SELECT * FROM clientes WHERE id_cliente = '$id'";
-} elseif ($identificador === "alugueis-especificos") {
-    $sql = "SELECT id_alugados, nome_livro, data_aluguel, data_devolucao, situacao FROM alugados JOIN clientes ON clientes.id_cliente = alugados.id_cliente JOIN livros ON livros.id_livro = alugados.id_livro WHERE clientes.id_cliente = '$id'";
-} elseif ($identificador === "filtro") {
-    $sql = "SELECT clientes.id_cliente, nome_cliente, nome_livro, data_devolucao FROM alugados JOIN clientes ON alugados.id_cliente = clientes.id_cliente JOIN livros ON alugados.id_livro = livros.id_livro WHERE nome_cliente LIKE '%$filtro%' OR nome_livro LIKE '%$filtro%'";
-} else {
-    $sql = "Erro!";
-}
-
-if ($sql != "Erro!") {
+if ($sql != "erro") {
     // Se não houver erro na opção, executa a query SQL
     $result = $conn->query($sql);
 
