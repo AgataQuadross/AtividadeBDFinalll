@@ -13,19 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
         else if (valor = 2) {
-            abeca.innerHTML = "<tr><th>Título</th><th>Leitor</th><th>Data de Emprestimo</th></tr>";
+            cabeca.innerHTML = "<tr><th>Leitores Atrasados</th></tr>";
         }
         else if (valor = 3) {
-
+            cabeca.innerHTML = "<tr><th>Categorias</th><th>Total de Livros</th></tr>";
         }
         else if (valor = 4) {
-
+            cabeca.innerHTML = "<tr><th>Autores</th><th>Total de Livros</th></tr>";
         }
         else if (valor = 5) {
-
+            cabeca.innerHTML = "<tr><th>Leitor</th><th>Endereço Completo</th></tr>";
         }
         else if (valor = 6) {
-
+            cabeca.innerHTML = "Não Funciona, Não quero resolver";
         }
         else {
 

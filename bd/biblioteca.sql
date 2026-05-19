@@ -2,8 +2,8 @@ CREATE DATABASE biblioteca;
 USE biblioteca;
 
 -- -- Criando um usuario
--- CREATE IF NOT EXISTS USER 'novo_usuario'@'localhost' IDENTIFIED BY '1234senha';
--- GRANT CREATE, SELECT, UPDATE, DELETE PRIVILEGES ON biblioteca.* TO 'novo_usuario'@'localhost';
+CREATE USER IF NOT EXISTS 'novo_usuario'@'localhost' IDENTIFIED BY '1234senha';
+GRANT CREATE, SELECT, UPDATE, DELETE ON biblioteca.* TO 'novo_usuario'@'localhost';
 
 CREATE TABLE categoria_leitor (
     id INT AUTO_INCREMENT PRIMARY KEY,
