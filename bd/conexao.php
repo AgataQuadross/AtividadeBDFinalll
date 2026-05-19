@@ -4,11 +4,10 @@
     $senha = "";
     $banco = "biblioteca";
 
-    $conexao = mysqli_connect($endereco, $usuario, $senha, $banco);
+    $conn = new mysqli($endereco, $usuario, $senha, $banco);
 
-    if(!$conexao){
-        die("Falha na conexão: ". mysqli_connect_error())
+    if(!$conn){
+        die("Falha na conexão: ". mysqli_connect_error());
     }
 
-    echo "Conexão Realizada com Sucesso!!<br><br>";
 ?>
