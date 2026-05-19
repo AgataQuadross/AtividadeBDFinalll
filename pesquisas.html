@@ -10,18 +10,29 @@
 
 <body>
 
-    <form method="GET" class="filtro">
-        <input type="text" name="filtro" id="filtro">
+    <form method="post" class="filtro">
+        <select name="filtro" id="filtro">
+            <option value="0" default>Select</option>
+            <option value="1">Livros Emprestados</option>
+            <option value="2">Lista Vermelha</option>
+            <option value="3">Total de livros</option>
+            <option value="4">Livros Por Autor</option>
+            <option value="5">Endereços</option>
+            <option value="6">Emprestados por Perfil</option>
+        </select>
     </form>
-
-    <button class="botao" id="btnVoltar">Voltar</button>
 
     <main>
         <section class="lista">
-            <tbody id="tabela-saida">
-            </tbody>
+            <table id="tabela">
+                <thead id="tabela-cabeca"></thead>
+                <tbody id="tabela-saida">
+                </tbody>
+            </table>
         </section>
     </main>
+
+    <script src="public/js/script.js"></script>
 
     <footer>
         <p>&copy; Todos os Direitos Reservados</p>
